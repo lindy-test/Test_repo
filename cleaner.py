@@ -1,8 +1,14 @@
-def remove_nulls(data):
-    return [item for item in data if item is not None]
+import unittest
 
-def standardize_case(data):
-    return [str(item).lower() for item in data]
+class TestCleaner(unittest.TestCase):
+    def test_remove_nulls(self):
+        self.assertEqual(remove_nulls([1, None, 2]), [1, 2])
 
-def deduplicate(data):
-    return list(set(data))
+    def test_standardize_case(self):
+        self.assertEqual(standardize_case(["A", "b", None]), ["a", "b", ""])
+
+    def test_deduplicate(self):
+        self.assertEqual(deduplicate([1, 1, 2]), [1, 2])
+
+if __name__ == '__main__':
+    unittest.main()
